@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import "./App.css";
 import { useWebGPUChecker } from "./hooks";
-import triangleShader from "shaders/triangle.wgsl";
+import triangleShader from "./shaders/triangle.wgsl";
 
 function WebGPUApp({ device }: { device: GPUDevice }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
