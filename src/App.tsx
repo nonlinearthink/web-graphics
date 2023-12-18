@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import "./App.css";
 import { useWebGPUChecker } from "./hooks";
+import triangleShader from "shaders/triangle.wgsl";
 
 function WebGPUApp({ device }: { device: GPUDevice }) {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -16,23 +17,7 @@ function WebGPUApp({ device }: { device: GPUDevice }) {
       });
       const module = device.createShaderModule({
         label: "our hardcoded red triangle shaders",
-        code: `
-      @vertex fn vs(
-        @builtin(vertex_index) vertexIndex : u32
-      ) -> @builtin(position) vec4f {
-        let pos = array(
-          vec2f( 0.0,  0.5),  // top center
-          vec2f(-0.5, -0.5),  // bottom left
-          vec2f( 0.5, -0.5)   // bottom right
-        );
- 
-        return vec4f(pos[vertexIndex], 0.0, 1.0);
-      }
- 
-      @fragment fn fs() -> @location(0) vec4f {
-        return vec4f(1.0, 0.0, 0.0, 1.0);
-      }
-    `
+        code: triangleShader
       });
       const pipeline = device.createRenderPipeline({
         label: "our hardcoded red triangle pipeline",

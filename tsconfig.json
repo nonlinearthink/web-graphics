@@ -16,9 +16,6 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": [
-      "@webgpu/types"
-    ],
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
